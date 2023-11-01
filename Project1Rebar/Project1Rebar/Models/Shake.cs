@@ -4,6 +4,12 @@ using System;
 
 namespace Project1Rebar.Models
 {
+    public enum priceSize
+    {       
+        S = 15,
+        M = 25,
+        L = 30
+    }
     [BsonIgnoreExtraElements]
     public class Shake
     {
@@ -16,17 +22,10 @@ namespace Project1Rebar.Models
         [BsonElement("description")]
         public string Description { get; set; }
 
-        [BsonElement("priceS")]
-        [BsonRepresentation(BsonType.Decimal128)]     
-        private decimal _priceS;
+        [BsonElement("priceSize")]
+        [BsonRepresentation(BsonType.String)]
+        public priceSize PriceSize { get; set; }
 
-        [BsonElement("priceM")]
-        [BsonRepresentation(BsonType.Decimal128)]
-        private decimal _priceM;
-
-        [BsonElement("priceL")]
-        [BsonRepresentation(BsonType.Decimal128)]
-        private decimal _priceL;
 
         //public static int UniqueId = 0;
         public String Name
@@ -49,78 +48,18 @@ namespace Project1Rebar.Models
             }
         }
 
-        public decimal PriceL
-        {
-            get
-            {
-                return _priceL;
-            }
-            set
-            {
-                try
-                {
-                    if (_priceL < 0) throw new Exception("The valid price");
-                    _priceL = value;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("The error Massage" + e.Message);
-                }
-            }
-        }
-        public decimal PriceM
-        {
-            get
-            {
-                return _priceM;
-            }
-            set
-            {
-                try
-                {
-                    if (_priceM < 0) throw new Exception("The valid price");
-                    _priceM = value;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("The error Massage" + e.Message);
-                }
-            }
-        }
-
-        public decimal PriceS
-        {
-            get
-            {
-                return _priceS;
-            }
-            set
-            {
-                try
-                {
-                    if (_priceS < 0) throw new Exception("The valid price");
-                    _priceS = value;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("The error Massage" + e.Message);
-                }
-            }
-        }
-
+     
         public Shake()
         {
             //Id = UniqueId++;
         }
 
-        public Shake(String name, String description, decimal priceL, decimal priceM, decimal priceS)
+        public Shake(String name, String description, priceSize priceSize)
         {
             //Id = UniqueId++;
             Name = name;
             Description = description;
-            PriceL = priceL;
-            PriceM = priceM;
-            PriceS = priceS;
+            PriceSize = priceSize;
 
         }
 

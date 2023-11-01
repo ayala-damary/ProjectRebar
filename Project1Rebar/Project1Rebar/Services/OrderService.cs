@@ -12,28 +12,28 @@ namespace Project1Rebar.Services
             _order = database.GetCollection<Order>(setting.OrdersCollection);
 
         }
-        public Order Create(Order order)
+        public Order CreateShakeInOrder(Order order)
         {
             _order.InsertOne(order);
             return order;
         }
 
-        public List<Order> Get()
+        public List<Order> GetShakes()
         {
             return _order.Find(Order => true).ToList();
         }
 
-        public Order Get(Guid id)
+        public Order GetShakeById(Guid id)
         {
             return _order.Find(order => order.Id == id).FirstOrDefault();
         }
 
-        public void Remove(Guid id)
+        public void DeleteShake(Guid id)
         {
             _order.DeleteOne(order => order.Id == id);
         }
 
-        public void Update(Guid id, Order order)
+        public void UpdateOrderShake(Guid id, Order order)
         {
             _order.ReplaceOne(Order => Order.Id == id, order);
         }

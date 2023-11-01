@@ -4,10 +4,10 @@ namespace Project1Rebar.Services
 {
     interface IMenuService
     {
-        List<Shake> Get();
-        Shake Get(Guid id);
+        List<Shake> GetShakes();
+        Shake GetShakeById(Guid id);
         Shake Create(Shake shake);
-        void Update(Guid id, Shake shake);
-        void Remove(Guid id);
+        void UpdateShake(Guid id, Shake shake);
+        void RemoveShake(Guid id);
     }
 }

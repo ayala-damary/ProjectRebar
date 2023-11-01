@@ -12,7 +12,6 @@ namespace Project1Rebar.Services
         {
             var database = mongoClient.GetDatabase(setting.DatabaseName);
             _shakes = database.GetCollection<Shake>(setting.ShapesCollection);
-
         }
         public Shake Create(Shake shake)
         {

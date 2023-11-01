@@ -4,10 +4,10 @@ namespace Project1Rebar.Services
 {
     public interface IOrderService
     {
-        List<Order> Get();
-        Order Get(Guid id);
-        Order Create(Order order);
-        void Update(Guid id, Order order);
-        void Remove(Guid id);
+        List<Shake> GetShakes();
+        Shake CreateShakeInOrder(Shake shake);
+        void DeleteShake(Guid id);
+        void UpdateOrderShake(Guid id, Shake shake);
+        Shake GetShakeById(Guid shakeId);
     }
 }
