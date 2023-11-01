@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project1Rebar.Models;
+using MongoDB.Driver;
+using System;
 
 namespace Project1Rebar.Services
 {
     public static bool IsValidName(string name)
     {
         string nameConsumer = "^[A-Za-z]+$";
-        if (name.Length < 3 || name.Length > 20 || !char.IsLetter(name[0]) || !Regex.IsMatch(order.NameCustomer, nameConsumer))
+        if (name.Length < 3 || name.Length > 20 || !char.IsLetter(name[0]) || !Regex.IsMatch(name, nameConsumer))
         {
             return false;
         }
         return true;
     }
 
-    public class AccountService
+    public class AccountService: IAccountService
     {
         private readonly IMongoCollection<Order> _orders;
-        public AccountService(IRebarStoreDatabaseSettings settings, IMongoClient mongoClient)
+        public AccountService(IRebarDatabaseSetting settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _orders = database.GetCollection<Order>(settings.AccountCollectionName);
+            _orders = database.GetCollection<Order>(settings.AccountCollection);
         }
 
         public Order CreateOrder(Order order)

@@ -1,8 +1,9 @@
 ﻿using Project1Rebar.Models;
+using System;
 
 namespace Project1Rebar.Services
 {
-    interface IMenuService
+    public interface IMenuService
     {
         List<Shake> GetShakes();
         Shake GetShakeById(Guid id);

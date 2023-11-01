@@ -67,7 +67,7 @@ namespace Project1Rebar.Controllers
             }
             if (string.IsNullOrEmpty(shake.Name))
             {
-                return BadRequest("Name must not be empty.");
+                return BadRequest("Name empty");
             }
             _orderService.UpdateOrderShake(id, shake);
             return NoContent();
