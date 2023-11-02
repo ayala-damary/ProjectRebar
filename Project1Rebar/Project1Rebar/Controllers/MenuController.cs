@@ -40,7 +40,7 @@ namespace Project1Rebar.Controllers
         public ActionResult<Shake> Post([FromBody] Shake shake)
         {
             Valid validation = new Valid();
-            if (!validation.shakeValid(shake))
+            if (!validation.shakeValid(shake).Equals("true"))
                 return BadRequest(validation.shakeValid(shake));
             _menuService.Create(shake);
             return CreatedAtAction(nameof(Get), new { id = shake.Id }, shake);
@@ -57,7 +57,7 @@ namespace Project1Rebar.Controllers
                 return NotFound($"Shake with Id={id} not found");
             }
             Valid validation = new Valid();
-            if (!validation.shakeValid(shake))
+            if (!validation.shakeValid(shake).Equals("true"))
                 return BadRequest(validation.shakeValid(shake));
             _menuService.UpdateShake(id, shake);
             return NoContent();

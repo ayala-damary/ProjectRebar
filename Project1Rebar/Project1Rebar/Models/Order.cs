@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System;
+using System.Collections.Generic;
 
 namespace Project1Rebar.Models
 {
@@ -107,27 +109,27 @@ namespace Project1Rebar.Models
             OrderId = Guid.NewGuid();
             OrderDate = DateTime.Now;
 
-            Console.WriteLine("Menu:");
-            int i = 1;
-            foreach (Shake shake in menu.Shakes)
-            {
-                Console.WriteLine($"{i}. {shake.Name} - {shake.Description} - Price (S/M/L): {shake.PriceS}/{shake.PriceM}/{shake.PriceL}");
-                i++;
-            }
+            //Console.WriteLine("Menu:");
+            //int i = 1;
+            //foreach (Shake shake in menu.Shakes)
+            //{
+            //    Console.WriteLine($"{i}. {shake.Name} - {shake.Description} - Price (S/M/L): {shake.PriceSize}");
+            //    i++;
+            //}
 
-            Console.WriteLine("Select shakes by entering their numbers (1, 2, 3, etc.), separated by spaces:");
+            //Console.WriteLine("Select shakes by entering their numbers (1, 2, 3, etc.), separated by spaces:");
 
-            string[] selections = Console.ReadLine().Split(' ');
+            //string[] selections = Console.ReadLine().Split(' ');
 
-            foreach (string selection in selections)
-            {
-                if (int.TryParse(selection, out int shakeNumber) && shakeNumber > 0 && shakeNumber <= menu.Shakes.Count)
-                {
-                    Shake selectedShake = menu.Shakes[shakeNumber - 1];
-                    OrderedShakes.Add(selectedShake);
-                    TotalAmount += selectedShake.PriceM;
-                }
-            }
+            //foreach (string selection in selections)
+            //{
+            //    if (int.TryParse(selection, out int shakeNumber) && shakeNumber > 0 && shakeNumber <= menu.Shakes.Count)
+            //    {
+            //        Shake selectedShake = menu.Shakes[shakeNumber - 1];
+            //        OrderedShakes.Add(selectedShake);
+            //        //TotalAmount += int.Parse(selectedShake.PriceSize);
+            //    }
+            //}
 
         }
     }

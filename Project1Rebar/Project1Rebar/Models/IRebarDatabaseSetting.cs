@@ -9,6 +9,6 @@ namespace Project1Rebar.Models
         string MenuCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
- 
+        string AccountCollection { get; }
     }
 }

@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Project1Rebar.Controllers
 {
@@ -24,8 +28,8 @@ namespace Project1Rebar.Controllers
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                //TemperatureC = Random.Shared.Next(-20, 55),
+                //Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
         }

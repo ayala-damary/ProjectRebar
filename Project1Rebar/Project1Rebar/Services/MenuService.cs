@@ -10,10 +10,10 @@ namespace Project1Rebar.Services
     public class MenuService:IMenuService
     {
         private readonly IMongoCollection<Shake> _shakes;
-        public ShakeService(IRebarDatabaseSetting setting, IMongoClient mongoClient)
+        public MenuService(IRebarDatabaseSetting setting, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(setting.DatabaseName);
-            _shakes = database.GetCollection<Shake>(setting.ShapesCollection);
+            _shakes = database.GetCollection<Shake>(setting.OrdersCollection);
         }
 
         public List<Shake> GetShakes()

@@ -19,6 +19,7 @@ namespace Project1Rebar.Controllers
         {
             this._accountService = accountService;
         }
+
         // GET: api/<AccountController>
         [HttpGet]
         public ActionResult<List<Order>> Get()
@@ -43,11 +44,20 @@ namespace Project1Rebar.Controllers
         [HttpPost]
         public ActionResult<Order> Post([FromBody] Order order)
         {
-            Valid validation = new Valid();
-            if (!validation.orderValid(order))
-                return BadRequest(validation.orderValid(order));
-            _accountService.CreateOrder(order);
-            return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
+            try
+            {
+                Valid validation = new Valid();
+                if (!validation.orderValid(order).Equals("true"))
+                {
+                    return BadRequest("Invalid order");
+                }
+                var createdOrder = _accountService.CreateOrder(order);
+                return CreatedAtAction(nameof(Get), new { id = createdOrder.Id }, createdOrder);
+            }
+            catch (Exception e)
+            {             
+                return StatusCode(500, "An error occurred: " + e.Message);
+            }
         }
 
         // PUT api/<AccountController>/5
@@ -55,7 +65,7 @@ namespace Project1Rebar.Controllers
         public ActionResult Put(Guid id, [FromBody] Order order)
         {
             Valid validation = new Valid();
-            if (!validation.orderValid(order))
+            if (!validation.orderValid(order).Equals("true"))
                 return BadRequest(validation.orderValid(order));
 
             var existingOrder = _accountService.GetOrderById(id);

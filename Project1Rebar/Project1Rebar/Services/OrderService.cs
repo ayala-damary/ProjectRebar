@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using Project1Rebar.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Project1Rebar.Services
 {
@@ -13,30 +14,41 @@ namespace Project1Rebar.Services
             _order = database.GetCollection<Order>(setting.OrdersCollection);
 
         }
-        public Order CreateShakeInOrder(Order order)
+
+        public Shake CreateShakeInOrder(Shake shake)
         {
-            _order.InsertOne(order);
-            return order;
+            //_order.InsertOne(shake);
+            return shake;
         }
 
-        public List<Order> GetShakes()
-        {
-            return _order.Find(Order => true).ToList();
-        }
+        //public List<Shake> GetShakes()
+        //{
+        //    return _order.Find(Order => true).ToList();
+        //}
 
-        public Order GetShakeById(Guid id)
-        {
-            return _order.Find(order => order.Id == id).FirstOrDefault();
-        }
+        //public Shake GetShakeById(Guid id)
+        //{
+        //    return _order.Find(order => order.Id == id).FirstOrDefault();
+        //}
 
         public void DeleteShake(Guid id)
         {
             _order.DeleteOne(order => order.Id == id);
         }
 
-        public void UpdateOrderShake(Guid id, Order order)
+        public object GetShakeById(Guid id)
         {
-            _order.ReplaceOne(Order => Order.Id == id, order);
+            throw new NotImplementedException();
+        }
+
+        //public void UpdateOrderShake(Guid id, Order order)
+        //{
+        //    _order.ReplaceOne(Order => Order.Id == id, order);
+        //}
+
+        public void UpdateOrderShake(Guid id, Shake shake)
+        {
+            //_order.ReplaceOne(Shake => Shake.Id == id, shake);
         }
     }
 }

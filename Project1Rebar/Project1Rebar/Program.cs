@@ -1,7 +1,9 @@
 using Microsoft.Extensions.Options;
+using Microsoft.Graph.Models;
 using MongoDB.Driver;
 using Project1Rebar.Models;
 using Project1Rebar.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +15,10 @@ builder.Services.AddSingleton<IRebarDatabaseSetting>(sp => sp.GetRequiredService
 
 builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.GetValue<String>("RebarDatabaseSetting:ConnectionString")));
 
-builder.Services.AddScoped<IShakeService, ShakeService>();
-
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IBranchService, BranchService>();
+builder.Services.AddScoped<IMenuService, MenuService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

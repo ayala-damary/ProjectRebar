@@ -21,10 +21,10 @@ namespace Project1Rebar.Controllers
         }
         // GET: api/<OrderController>
         [HttpGet]
-        public ActionResult<List<Shake>> Get()
-        {
-            return _orderService.GetShakes();
-        }
+        //public ActionResult<List<Shake>> Get()
+        //{
+        //    return _orderService.GetShakes();
+        //}
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
@@ -32,7 +32,7 @@ namespace Project1Rebar.Controllers
         {
             var order = _orderService.GetShakeById(id);
             if (order == null) { NotFound($"order with Id={id} not found"); }
-            return order;
+            return (ActionResult<Shake>)order;
         }
 
         // POST api/<OrderController>
@@ -54,33 +54,35 @@ namespace Project1Rebar.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(Guid id, [FromBody] Shake shake)
+        public void Put(Guid id, [FromBody] Shake shake)
         {
-            var existingShake = _orderService.GetShakeById(id);
-            if (existingShake == null)
-            {
-                return NotFound($"Shake with Id={id} not found");
-            }
-            if (shake == null)
-            {
-                return NotFound($"Shake with Id={shake.Id} not found");
-            }
-            if (string.IsNullOrEmpty(shake.Name))
-            {
-                return BadRequest("Name empty");
-            }
-            _orderService.UpdateOrderShake(id, shake);
-            return NoContent();
+            //    var existingShake = _orderService.GetShakeById(id);
+            //    if (existingShake == null)
+            //    {
+            //        return NotFound($"Shake with Id={id} not found");
+            //    }
+            //    if (shake == null)
+            //    {
+            //        return NotFound($"Shake with Id={shake.Id} not found");
+            //    }
+            //    if (string.IsNullOrEmpty(shake.Name))
+            //    {
+            //        return BadRequest("Name empty");
+            //    }
+            //    _orderService.UpdateOrderShake(id, shake);
+            //    return NoContent();
         }
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(Guid id)
+        public void Delete(Guid id)
         {
-            var shake = _orderService.GetShakeById(id);
-            if (shake == null) { NotFound($"Shake with Id={id} not found"); }
-            _orderService.DeleteShake(shake.Id);
-            return Ok($"Shake with Id ={id} deleted");
+            //    var shake = _orderService.GetShakeById(id);
+            //    if (shake == null) { NotFound($"Shake with Id={id} not found"); }
+            //    _orderService.DeleteShake(shake.Id);
+            //    return Ok($"Shake with Id ={id} deleted");
+            //}
         }
     }
 }
+

@@ -11,7 +11,7 @@ namespace Project1Rebar.Controllers
     {
         public string orderValid(Order order)
         {
-            if (string.IsNullOrEmpty(order.NameCustomer))
+            if (string.IsNullOrEmpty(order.CustomerName))
             {
                 return "Customer name empty";
             }
@@ -19,7 +19,7 @@ namespace Project1Rebar.Controllers
             {
                 return "The least empty";
             }
-            if (!DateTime.TryParse(order.DateOrder.ToString(), out _))
+            if (!DateTime.TryParse(order.OrderDate.ToString(), out _))
             {
                 return "Invalid DateOrder format";
             }

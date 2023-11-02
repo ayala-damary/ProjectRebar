@@ -1,4 +1,9 @@
-﻿namespace Project1Rebar.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
+
+namespace Project1Rebar.Models
 {
     [BsonIgnoreExtraElements]
     public class Account

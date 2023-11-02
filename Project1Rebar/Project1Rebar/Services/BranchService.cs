@@ -8,10 +8,10 @@ using System;
 
 namespace Project1Rebar.Services
 {
-    public class Branch:IBranch
+    public class BranchService: IBranchService
     {
         private readonly IMongoCollection<Account> _account;
-        public DatabaseOfBranchService(IRebarDatabaseSetting settings, IMongoClient mongoClient)
+        public BranchService(IRebarDatabaseSetting settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _account = database.GetCollection<Account>(settings.AccountCollection);

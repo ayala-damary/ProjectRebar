@@ -7,5 +7,6 @@
         public string MenuCollectionName { get; set; } = string.Empty;
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
+        public string AccountCollection => throw new System.NotImplementedException();
     }
 }
